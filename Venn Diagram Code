@@ -1,0 +1,18 @@
+from matplotlib_venn import venn2
+import matplotlib.pyplot as plt
+
+# Read gene IDs from the first file
+with open("lipid_downregulated_HISAT2.txt", "r") as file:
+    gene_ids1 = set(file.read().splitlines())
+
+# Read gene IDs from the second file
+with open("lipid_downregulated_STAR.txt", "r") as file:
+    gene_ids2 = set(file.read().splitlines())
+
+# Create a Venn diagram
+venn_labels = {'10': 'Category 1', '01': 'Category 2', '11': 'Overlap'}
+venn2([gene_ids1, gene_ids2], set_labels=('HISAT2', 'STAR'))
+
+# Display the plot
+plt.title("Freeze Vs Control: Downregulated Lipid Metabolism Genes")
+plt.show()
